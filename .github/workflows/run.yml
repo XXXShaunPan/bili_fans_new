@@ -21,10 +21,11 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: 3.7
-    - name: 抓取掉粉数据
+    - name: 抓取新站里的粉丝数据
       run: |
         pip install -r requirements.txt
         python3 down_fans.py
+        python3 up_fans.py
     - name: 上传
       run: |
         git config --local user.email "19820637553@163.com"

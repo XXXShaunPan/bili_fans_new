@@ -2,9 +2,9 @@ import requests as rq
 import os
 import pandas as pd
 
-df=pd.read_csv('bili_fans/down_fans_new.csv',index_col=[0])
+df=pd.read_csv('bili_fans/up_fans_new.csv',index_col=[0])
 # df=pd.DataFrame(index=['mid'])
-
+# 
 header={"Host": "xz.newrank.cn"
 	 ,"Connection": "keep-alive"
 	 ,"Content-Length": "90"
@@ -17,11 +17,11 @@ header={"Host": "xz.newrank.cn"
 	 ,"Sec-Fetch-Dest": "empty"
 	 ,"Accept-Encoding": "gzip, deflate, br"
 	 ,"Accept-Language": "zh-CN,zh;q=0.9"
-	 ,"Cookie": "Hm_lvt_ab2358e695ccada3424acb6402afd2cb=1612271580; _uab_collina=161227158027860629407834; token=21AD6BF700B64085AB29B3EFFB9BC7F2"
+	  ,"Cookie": "SESSION=2f58f129-e2ab-4e05-8be5-a8c3fc6d8181; Hm_lvt_ab2358e695ccada3424acb6402afd2cb=1612271580; Hm_lpvt_ab2358e695ccada3424acb6402afd2cb=1612271580; _uab_collina=161227158027860629407834; token=21AD6BF700B64085AB29B3EFFB9BC7F2"
  }
 
 
-a={"indexType":6,"field":"","sort":"addFollowerCount","interval":"day","size":50,"start":1}
+a={"indexType":0,"field":"","sort":"addFollowerCount","interval":"day","size":60,"start":1}
 
 
 def proc(da,date):
@@ -36,13 +36,13 @@ def proc(da,date):
 	    if date not in df.index.tolist():
 	   	 	df.loc[date]=[0]*len(df.columns)
 	    df[i['name']][date]=int(num)
-	    # down_pic(i['face'],i['mid'])
+	    # up_pic(i['face'],i['mid'])
 	    print(i['name'])
 
-# def down_pic(url,mid):
-# 	if not os.path.exists(f"down_pic/{mid}.jpg"):
+# def up_pic(url,mid):
+# 	if not os.path.exists(f"up_pic/{mid}.jpg"):
 # 		pic=rq.get(url,headers=header1).content
-# 		with open(f'down_pic/{mid}.jpg','wb') as f:
+# 		with open(f'up_pic/{mid}.jpg','wb') as f:
 # 			f.write(pic)
 
 
@@ -51,11 +51,10 @@ def spider_all_day():
 	res=rq.post("https://xz.newrank.cn/nr/bili/rank/singleIndex",json=a,headers=header).json()['data']
 	date=res['update_time'].split(" ")[0]
 	proc(res['list'],date)
-	#print(res)
 
 def main():
 	spider_all_day()
-	df.to_csv('bili_fans/down_fans_new.csv',index=True,header=True)
+	df.to_csv('bili_fans/up_fans_new.csv',index=True,header=True)
 
 if __name__ == '__main__':
 	main()
