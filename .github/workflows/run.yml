@@ -1,0 +1,34 @@
+name: 签到
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  schedule:
+    - cron: 0 8 * * *
+  watch:
+    types: started
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: 初始化Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.7
+    - name: 签到
+      run: |
+        pip install -r requirements.txt
+        python3 down_fans.py
+    - name: 上传
+      run: |
+        git config --local user.email "19820637553@163.com"
+        git config --local user.name "XXXShaunPan"
+        git add .
+        git commit -m "`date '+%Y-%m-%d %H:%M:%S'`"
+        git push -u origin master && echo "push ok"
