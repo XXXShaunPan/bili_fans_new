@@ -24,6 +24,7 @@ jobs:
     - name: 签到
       run: |
         pip install -r requirements.txt
+        pip install pandas -i http://pypi.douban.com/simple/ --trusted-host pypi.douban.com
         python3 down_fans.py
     - name: 上传
       run: |
