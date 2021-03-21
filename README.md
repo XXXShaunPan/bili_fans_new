@@ -1,2 +1,2 @@
 # bilibili upload`s fans spider
-## a bilibilib uploader`s rank of down fans
+### a bilibilib uploader`s rank of dropping list of powder
