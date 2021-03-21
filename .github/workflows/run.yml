@@ -21,7 +21,7 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: 3.7
-    - name: 签到
+    - name: 抓取掉粉数据
       run: |
         pip install -r requirements.txt
         python3 down_fans.py
@@ -31,4 +31,4 @@ jobs:
         git config --local user.name "XXXShaunPan"
         git add .
         git commit -m "`date '+%Y-%m-%d %H:%M:%S'`"
-        git push -u origin master && echo "push ok"
+        git push -u origin main && echo "push ok"
