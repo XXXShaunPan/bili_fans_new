@@ -32,7 +32,7 @@ jobs:
         
     - name: 抓取新站里的粉丝数据
 #       if: github.event.action != 'started'   判断types方式
-      if: github.event != 'watch'                   
+      if: github.event == 'watch'                   
 #       直接判断执行条件
       run: |
         python3 down_fans.py
@@ -40,9 +40,9 @@ jobs:
         python3 up_fans.py
       
     - name: 获取指定数据
-      if: github.event == 'watch'
+      if: github.event.action == 'started'
       run: |
-        echo "这里是获取指定日期的数据"    
+        echo "这里是获取指定日期的数据 ${{ github.event }}"    
         
     - name: 上传
       run: |
