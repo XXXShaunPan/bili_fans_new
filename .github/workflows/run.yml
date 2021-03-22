@@ -29,10 +29,13 @@ jobs:
     - name: pip依赖包
       run: |
         pip install -r requirements.txt
+        echo "github.event.action: ${{ github.event.action }}"
+        echo "github.event_name: ${{ github.event_name }}"
         
     - name: 抓取新站里的粉丝数据
-#       if: github.event.action != 'started'   判断types方式
-      if: github.event == 'watch'                   
+#       判断types方式
+      if: github.event.action != 'started'   
+#       if: github.event == 'watch'                   
 #       直接判断执行条件
       run: |
         python3 down_fans.py
