@@ -4,7 +4,8 @@ import pandas as pd
 
 df=pd.read_csv('bili_fans/up_fans_new.csv',index_col=[0])
 # df=pd.DataFrame(index=['mid'])
-# 
+cookie=process.env.XZ_COOKIE
+
 header={"Host": "xz.newrank.cn"
 	 ,"Connection": "keep-alive"
 	 ,"Content-Length": "90"
@@ -17,7 +18,7 @@ header={"Host": "xz.newrank.cn"
 	 ,"Sec-Fetch-Dest": "empty"
 	 ,"Accept-Encoding": "gzip, deflate, br"
 	 ,"Accept-Language": "zh-CN,zh;q=0.9"
-	  ,"Cookie": "SESSION=2f58f129-e2ab-4e05-8be5-a8c3fc6d8181; Hm_lvt_ab2358e695ccada3424acb6402afd2cb=1612271580; Hm_lpvt_ab2358e695ccada3424acb6402afd2cb=1612271580; _uab_collina=161227158027860629407834; token=21AD6BF700B64085AB29B3EFFB9BC7F2"
+	  ,"Cookie": cookie
  }
 
 
