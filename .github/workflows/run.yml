@@ -1,14 +1,24 @@
 name: 签到
 
 on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+#   push:
+#     branches: [ master ]
+#   pull_request:
+#     branches: [ master ]
   schedule:
     - cron: 0 8 * * *
   watch:
     types: started
+  workflow_dispatch:
+    inputs:
+      get_fans_type:
+        description: 'fans_type (空down 1up)'
+        required: true
+        default: ''
+      home:
+        description: 'location'
+        required: true
+        default: 'The Octoverse'
     
 env:
   XZ_COOKIE: ${{ secrets.XZ_COOKIE }}
@@ -31,6 +41,7 @@ jobs:
         pip install -r requirements.txt
         echo "github.event.action: ${{ github.event.action }}"
         echo "github.event_name: ${{ github.event_name }}"
+        echo "home: ${{ github.event.inputs.home }}"
         
     - name: 抓取新站里的粉丝数据
 #       判断types方式
