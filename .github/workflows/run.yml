@@ -59,12 +59,12 @@ jobs:
       if: failure()
       uses: dawidd6/action-send-mail@master
       with:
-        server_address: smtp.163.com
+        server_address: smtp.qq.com
         server_port: 465
         username: ${{ secrets.MAIL_USERNAME }}
         password: ${{ secrets.MAIL_PASSWORD }}
         subject: CSDN Report
         body: "文件源码无变化，push失败"
-        to: 630077372@qq.com
+        to: 19820637553@163.com
         from: Shaun_fans_actions
         content_type: text/plain
