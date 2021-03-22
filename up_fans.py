@@ -4,7 +4,7 @@ import pandas as pd
 
 df=pd.read_csv('bili_fans/up_fans_new.csv',index_col=[0])
 # df=pd.DataFrame(index=['mid'])
-cookie=process.env.XZ_COOKIE
+cookie=os.environ["XZ_COOKIE"]
 
 header={"Host": "xz.newrank.cn"
 	 ,"Connection": "keep-alive"
