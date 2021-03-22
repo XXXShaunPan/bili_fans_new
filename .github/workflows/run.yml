@@ -31,14 +31,16 @@ jobs:
         pip install -r requirements.txt
         
     - name: 抓取新站里的粉丝数据
-      if: github.event.action != 'started'
+#       if: github.event.action != 'started'   判断types方式
+      if: github.event != 'watch'                   
+#       直接判断执行条件
       run: |
         python3 down_fans.py
         echo "============华丽的分割线==========="
         python3 up_fans.py
       
     - name: 获取指定数据
-      if: github.event.action == 'started'
+      if: github.event == 'watch'
       run: |
         echo "这里是获取指定日期的数据"    
         
