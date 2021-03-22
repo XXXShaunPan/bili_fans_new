@@ -11,7 +11,7 @@ on:
     types: started
     
 env:
-  JD_COOKIE: ${{ secrets.XZ_COOKIE }}
+  XZ_COOKIE: ${{ secrets.XZ_COOKIE }}
   
 jobs:
   build:
