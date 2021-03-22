@@ -9,7 +9,10 @@ on:
     - cron: 0 8 * * *
   watch:
     types: started
-
+    
+env:
+  JD_COOKIE: ${{ secrets.XZ_COOKIE }}
+  
 jobs:
   build:
     runs-on: ubuntu-latest
