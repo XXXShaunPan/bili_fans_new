@@ -1,4 +1,4 @@
-name: 签到
+name: fans爬取_new
 
 on:
 #   push:
@@ -15,10 +15,10 @@ on:
         description: 'fans_type (空down 1up)'
         required: true
         default: ''
-      home:
-        description: 'location'
+      date_start:
+        description: '开始时间 (如03－01)'
         required: true
-        default: 'The Octoverse'
+        default: ''
     
 env:
   XZ_COOKIE: ${{ secrets.XZ_COOKIE }}
@@ -41,7 +41,7 @@ jobs:
         pip install -r requirements.txt
         echo "github.event.action: ${{ github.event.action }}"
         echo "github.event_name: ${{ github.event_name }}"
-        echo "home: ${{ github.event.inputs.home }}"
+        echo "home: ${{ github.event.inputs.date_start }}"
         
     - name: 抓取新站里的粉丝数据
 #       判断types方式
@@ -56,7 +56,7 @@ jobs:
     - name: 获取指定数据
       if: github.event.action == 'started'
       run: |
-        echo "这里是获取指定日期的数据 ${{ github.event }}"    
+        echo "这里是获取指定日期的数据"    
         
     - name: 上传
       run: |
