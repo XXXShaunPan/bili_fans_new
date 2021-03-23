@@ -1,4 +1,4 @@
-name: fans爬取_new
+name: fans_spider_new
 
 on:
 #   push:
@@ -6,17 +6,17 @@ on:
 #   pull_request:
 #     branches: [ master ]
   schedule:
-    - cron: 0 8 * * *
+    - cron: 20 4 * * *
   watch:
     types: started
   workflow_dispatch:
     inputs:
-      get_fans_type:
-        description: 'fans_type (空down 1up)'
+      fans_type:
+        description: '涨粉榜？ (空down 1up)'
         required: true
         default: ''
       date_start:
-        description: '开始时间 (如03－01)'
+        description: '开始时间 (如03-01)'
         required: true
         default: ''
     
@@ -45,18 +45,21 @@ jobs:
         
     - name: 抓取新站里的粉丝数据
 #       判断types方式
-      if: github.event.action != 'started'   
-#       if: github.event == 'watch'                   
+      # if: github.event.action != 'started'
 #       直接判断执行条件
+      if: github.event_name == 'schedule'                   
       run: |
         python3 down_fans.py
         echo "============华丽的分割线==========="
         python3 up_fans.py
       
     - name: 获取指定数据
-      if: github.event.action == 'started'
+      if: github.event_name != 'schedule'
+      env:
+        date_start: ${{ github.event.inputs.date_start }}
+        fans_type: ${{ github.event.inputs.fans_type }}
       run: |
-        echo "这里是获取指定日期的数据"    
+        python3 new_get_fans.py
         
     - name: 上传
       run: |
@@ -67,15 +70,15 @@ jobs:
         git push -u origin main && echo "push ok"
         
     - name: 'Send mail'
-      if: failure()
+      if: success()
       uses: dawidd6/action-send-mail@master
       with:
         server_address: smtp.qq.com
         server_port: 465
         username: ${{ secrets.MAIL_USERNAME }}
         password: ${{ secrets.MAIL_PASSWORD }}
-        subject: "bili_fans_new项目push失败通知"
-        body: "文件源码无变化，push失败"
+        subject: "bili_fans_new项目push成功通知"
+        body: "新站涨掉粉榜爬取完成！"
         to: 630077372@qq.com
         from: Shaun_fans_actions
         content_type: text/plain
