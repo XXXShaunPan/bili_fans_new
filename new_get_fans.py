@@ -35,7 +35,7 @@ df1.loc['desc']=['']*len(df.columns)
 b=df1.loc['近期掉粉总榜'].tolist()
 shuffle(b)
 df1.loc['近期掉粉总榜_开头']=b
-df1.loc['color']=a
+df1.loc['color']=main_color.main(a)
 df1=df1.reindex(index=['cname','color','desc','近期掉粉总榜_开头','近期掉粉总榜'])
 df1.to_csv(f'bili_fans/{type}.csv',header=True,index=True)
 
