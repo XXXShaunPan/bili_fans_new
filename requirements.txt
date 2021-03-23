@@ -2,4 +2,3 @@ pycryptodome
 requests
 pandas
 pillow
-colorsys
