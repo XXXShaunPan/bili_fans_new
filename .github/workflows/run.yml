@@ -61,7 +61,7 @@ jobs:
       run: |
         mkdir bili_UP_pic/
         python3 new_get_fans.py
-        tar -zcvf bili_UP_pic/ .
+        tar -zcvf up_pic.tar.gz bili_UP_pic/
         
     - name: 上传
       run: |
