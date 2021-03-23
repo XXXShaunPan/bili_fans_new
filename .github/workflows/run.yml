@@ -59,7 +59,9 @@ jobs:
         date_start: ${{ github.event.inputs.date_start }}
         fans_type: ${{ github.event.inputs.fans_type }}
       run: |
+        mkdir bili_UP_pic/
         python3 new_get_fans.py
+        tar -zcvf bili_UP_pic/ .
         
     - name: 上传
       run: |
