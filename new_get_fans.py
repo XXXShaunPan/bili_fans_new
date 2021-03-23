@@ -2,7 +2,7 @@ import pandas as pd
 from random import shuffle
 import os
 
-type="up" if os.environ["get_fans_type"] else "down"
+type="up" if os.environ["fans_type"] else "down"
 df1=pd.read_csv(f'bili_fans/{type}_fans_new.csv',index_col=[0])
 
 m,d=os.environ["date_start"].split('-')
