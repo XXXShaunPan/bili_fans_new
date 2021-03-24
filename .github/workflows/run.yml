@@ -47,14 +47,14 @@ jobs:
 #       判断types方式
       # if: github.event.action != 'started'
 #       直接判断执行条件
-      if: github.event_name == 'schedule'                   
+      if: github.event_name != 'workflow_dispatch'              
       run: |
         python3 down_fans.py
         echo "============华丽的分割线==========="
         python3 up_fans.py
       
     - name: 获取指定数据
-      if: github.event_name != 'schedule'
+      if: github.event_name == 'workflow_dispatch'
       env:
         date_start: ${{ github.event.inputs.date_start }}
         fans_type: ${{ github.event.inputs.fans_type }}
