@@ -14,7 +14,7 @@ df.loc['mid']=[0]*len(df.columns)
 
 for i in df.columns:
 	if df[i].tolist()==[0]*len(df.index):
-		print(i)
+# 		print(i)
 		del(df[i])
 	else:
 		df.loc['mid'][i]=df1.loc['mid'][i]
