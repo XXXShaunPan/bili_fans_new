@@ -73,7 +73,7 @@ jobs:
         
     - name: sync github -> gitee
       uses: Yikun/hub-mirror-action@master
-      if: success()
+      if: success() && github.event_name == 'workflow_dispatch'
 #       if: env.dst_key && env.dst_token && env.gitee_user
       with:
         # 必选，需要同步的 Github 用户（源）
