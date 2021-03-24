@@ -41,7 +41,6 @@ jobs:
         pip install -r requirements.txt
         echo "github.event.action: ${{ github.event.action }}"
         echo "github.event_name: ${{ github.event_name }}"
-        echo "home: ${{ github.event.inputs.date_start }}"
         
     - name: 抓取新站里的粉丝数据
 #       判断types方式
@@ -72,7 +71,7 @@ jobs:
         git push -u origin main && echo "push ok"
         
     - name: sync github -> gitee
-      if: success() && github.event_name == 'workflow_dispatch'
+      if: success()
       uses: Yikun/hub-mirror-action@master  
 #       if: env.dst_key && env.dst_token && env.gitee_user
       with:
