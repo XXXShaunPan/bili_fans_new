@@ -61,11 +61,11 @@ jobs:
       run: |
         mkdir bili_UP_pic/
         python3 new_get_fans.py
-        tar -zcvf up_pic.tar.gz bili_UP_pic/
+        tar -zcvf bili_fans_new_result.tar.gz bili_UP_pic/
         
     - name: 上传
       run: |
-        git config --local user.email "19820637553@163.com"
+        git config --local user.email "630077372@qq.com"
         git config --local user.name "XXXShaunPan"
         git add .
         git commit -m "`date '+%Y-%m-%d %H:%M:%S'`"
@@ -74,6 +74,7 @@ jobs:
     - name: sync github -> gitee
       uses: Yikun/hub-mirror-action@master
       if: success()
+#       if: env.dst_key && env.dst_token && env.gitee_user
       with:
         # 必选，需要同步的 Github 用户（源）
         src: 'github/${{ github.repository_owner }}'
