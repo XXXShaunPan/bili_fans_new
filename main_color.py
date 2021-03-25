@@ -73,7 +73,10 @@ def main(input_pic):
     root='bili_UP_pic/'
     for i in input_pic:
         if not os.path.exists(f'{root}{i}.jpg'):
-            pic=rq.get(f'https://api.bilibili.com/x/space/acc/info?mid={i}').json()['data']['face']
+            try:
+				pic=rq.get(f'https://api.bilibili.com/x/space/acc/info?mid=628501143').json()['data']['face']
+			except:
+				pic="https://static.hdslb.com/images/member/noface.gif"
             with open(f'{root}{i}.jpg','wb') as f:
                 f.write(rq.get(pic).content)
             print(str(i)+"——下载完成==",end="")
