@@ -73,7 +73,7 @@ def main(input_pic):
     root='bili_UP_pic/'
     for i in input_pic:
 		try:
-			pic=rq.get(f'https://api.bilibili.com/x/space/acc/info?mid=628501143').json()['data']['face']
+			pic=rq.get(f'https://api.bilibili.com/x/space/acc/info?mid={i}').json()['data']['face']
 		except:
 			pic="https://static.hdslb.com/images/member/noface.gif"
 		with open(f'{root}{i}.jpg','wb') as f:
