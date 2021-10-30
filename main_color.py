@@ -72,16 +72,15 @@ def main(input_pic):
     result_all=[]
     root='bili_UP_pic/'
     for i in input_pic:
-	try:
-		pic=rq.get(f'https://api.bilibili.com/x/space/acc/info?mid={i}').json()['data']['face']
-	except:
-		pic="https://static.hdslb.com/images/member/noface.gif"
-	with open(f'{root}{i}.jpg','wb') as f:
-		f.write(rq.get(pic).content)
-		print(str(i)+"——下载完成==",end="")
-	input_rgb="rgb"+str(get_dominant_color(Image.open(f'{root}/{i}.jpg')))
-	result_all.append(trans_rgb(input_rgb))
-	print(i)
+        try:
+            pic=rq.get(f'https://api.bilibili.com/x/space/acc/info?mid={i}').json()['data']['face']
+        except:
+            pic="https://static.hdslb.com/images/member/noface.gif"
+        with open(f'{root}{i}.jpg','wb') as f:
+            f.write(rq.get(pic).content)
+            print(str(i)+"——下载完成==",end="")
+        input_rgb="rgb"+str(get_dominant_color(Image.open(f'{root}/{i}.jpg')))
+        result_all.append(trans_rgb(input_rgb))
 #     print('\n\ncolor,'+','.join(result_all))
     return result_all
 # print(hex(255))
