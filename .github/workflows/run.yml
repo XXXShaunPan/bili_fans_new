@@ -71,7 +71,8 @@ jobs:
         git push -u origin main && echo "push ok"
         
     - name: sync github -> gitee
-      if: success()
+#       if: success()
+      if : github.event_name == 'close'
       uses: Yikun/hub-mirror-action@master  
 #       if: env.dst_key && env.dst_token && env.gitee_user
       with:
@@ -93,7 +94,7 @@ jobs:
         # white_list: 'repo_name,repo_name2'
         
     - name: 'Send mail'
-      if: success()
+      if : github.event_name == 'close'
       uses: dawidd6/action-send-mail@master
       with:
         server_address: smtp.qq.com
