@@ -48,6 +48,8 @@ jobs:
 #       直接判断执行条件
       if: github.event_name != 'workflow_dispatch'              
       run: |
+        python3 active_xz.py
+        
         python3 down_fans.py
         echo "============华丽的分割线==========="
         python3 up_fans.py
