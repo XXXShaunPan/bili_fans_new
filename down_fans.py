@@ -1,5 +1,5 @@
 import requests as rq
-import os
+import os,random
 import pandas as pd
 
 df=pd.read_csv('bili_fans/down_fans_new.csv',index_col=[0])
@@ -30,7 +30,7 @@ def proc(da,date):
 	    num=i['addFollowerCount'].replace("-","")
 	    if 'w' in num:
 	        num=num.replace("w",'')
-	        num=eval(num)*10000
+	        num=eval(num)*10000+random.randint(1,100)
 	    if i['name'] not in df.columns:
 	    	df[i['name']]=[0]*len(df.index)
 	    	df[i['name']]['mid']=i['mid']
