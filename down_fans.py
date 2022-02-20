@@ -1,6 +1,7 @@
 import requests as rq
 import os,random
 import pandas as pd
+from send_mail import run
 
 df=pd.read_csv('bili_fans/down_fans_new.csv',index_col=[0])
 # df=pd.DataFrame(index=['mid'])
@@ -26,6 +27,7 @@ a={"indexType":6,"field":"","sort":"addFollowerCount","interval":"day","size":50
 
 
 def proc(da,date):
+	out=''
 	for i in da:
 	    num=i['addFollowerCount'].replace("-","")
 	    if 'w' in num:
@@ -38,7 +40,8 @@ def proc(da,date):
 	   	 	df.loc[date]=[0]*len(df.columns)
 	    df[i['name']][date]=int(num)
 	    # down_pic(i['face'],i['mid'])
-	    print(f"{i['name']}=={num}")
+	    out+=f"{i['name']}=={num}\n"
+	run(title='掉粉情况推送',content=out)
 
 # def down_pic(url,mid):
 # 	if not os.path.exists(f"down_pic/{mid}.jpg"):
