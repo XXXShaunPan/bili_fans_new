@@ -17,6 +17,10 @@ on:
         description: '内容'
         required: true
         default: ''
+      user:
+        description: '收件人'
+        required: false
+        default: '630077372@qq.com'
   
 jobs:
   build:
@@ -36,6 +40,6 @@ jobs:
         password: ${{ secrets.MAIL_PASSWORD }}
         subject: ${{ github.event.inputs.subject }}
         body: ${{ github.event.inputs.content }}
-        to: 630077372@qq.com
+        to: ${{ github.event.inputs.user }}
         from: Shaun
         content_type: text/plain
