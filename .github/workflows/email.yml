@@ -39,5 +39,5 @@ jobs:
         subject: ${{ github.event.inputs.subject }}
         body: ${{ github.event.inputs.content }}
         to: 630077372@qq.com
-        from: Shaun_fans_actions
+        from: Shaun
         content_type: text/plain
