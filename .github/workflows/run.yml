@@ -59,19 +59,19 @@ jobs:
       run: |
         sleep 30 && python3 down_fans.py && python3 up_fans.py
      
-    - name: 'Send mail'
-      if: success() && github.event_name != 'workflow_dispatch'
-      uses: dawidd6/action-send-mail@master
-      with:
-        server_address: smtp.qq.com
-        server_port: 465
-        username: ${{ secrets.MAIL_USERNAME }}
-        password: ${{ secrets.MAIL_PASSWORD }}
-        subject: "bili_fans_new项目push成功通知"
-        body: "新站涨掉粉榜爬取完成！"
-        to: 630077372@qq.com
-        from: Shaun_fans_actions
-        content_type: text/plain
+#     - name: 'Send mail'
+#       if: success() && github.event_name != 'workflow_dispatch'
+#       uses: dawidd6/action-send-mail@master
+#       with:
+#         server_address: smtp.qq.com
+#         server_port: 465
+#         username: ${{ secrets.MAIL_USERNAME }}
+#         password: ${{ secrets.MAIL_PASSWORD }}
+#         subject: "bili_fans_new项目push成功通知"
+#         body: "新站涨掉粉榜爬取完成！"
+#         to: 630077372@qq.com
+#         from: Shaun_fans_actions
+#         content_type: text/plain
 
     - name: 获取指定数据
       if: github.event_name == 'workflow_dispatch'
