@@ -38,7 +38,7 @@ def proc(da,date):
 	   	 	df.loc[date]=[0]*len(df.columns)
 	    df[i['name']][date]=int(num)
 	    # down_pic(i['face'],i['mid'])
-	    print(i['name'])
+	    print(f"{i['name']}=={num}")
 
 # def down_pic(url,mid):
 # 	if not os.path.exists(f"down_pic/{mid}.jpg"):
