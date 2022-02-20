@@ -54,6 +54,11 @@ jobs:
         echo "============华丽的分割线==========="
         python3 up_fans.py
       
+    - name: 失败重试
+      if: failure()
+      run: |
+        sleep 30 && python3 down_fans.py && python3 up_fans.py
+    
     - name: 获取指定数据
       if: github.event_name == 'workflow_dispatch'
       env:
