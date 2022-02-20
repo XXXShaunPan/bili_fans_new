@@ -1,4 +1,4 @@
-name: fans_spider_new
+name: send_email
 
 on:
 #   push:
