@@ -22,6 +22,7 @@ on:
     
 env:
   XZ_COOKIE: ${{ secrets.XZ_COOKIE }}
+  GH_TOKEN: ${{ secrets.GH_TOKEN }}
   
 jobs:
   build:
