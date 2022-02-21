@@ -3,10 +3,10 @@ name: send_email
 on:
 #   push:
 #     branches: [ master ]
-#   pull_request:
-#     branches: [ master ]
-  watch:
-    types: started
+  pull_request:
+    branches: [ master ]
+#   watch:
+#     types: started
   workflow_dispatch:
     inputs:
       subject:
