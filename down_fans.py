@@ -40,7 +40,7 @@ def proc(da,date):
 	   	 	df.loc[date]=[0]*len(df.columns)
 	    df[i['name']][date]=int(num)
 	    # down_pic(i['face'],i['mid'])
-	    out+=f"{i['name']}=={num}\n"
+	    out+=f"{i['name']}=={int(num)}\n"
 	run(title='掉粉情况推送',content=out)
 
 # def down_pic(url,mid):
