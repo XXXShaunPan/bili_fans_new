@@ -1,7 +1,7 @@
 import requests as rq
 import os,random
 import pandas as pd
-from send_mail import run
+import send_mail
 
 df=pd.read_csv('bili_fans/down_fans_new.csv',index_col=[0])
 # df=pd.DataFrame(index=['mid'])
@@ -41,7 +41,7 @@ def proc(da,date):
 	    df[i['name']][date]=int(num)
 	    # down_pic(i['face'],i['mid'])
 	    out+=f"{i['name']}=={int(num)}\n"
-	run(title='掉粉情况推送',content=out)
+	send_mail.run(title='掉粉情况推送',content=out)
 
 # def down_pic(url,mid):
 # 	if not os.path.exists(f"down_pic/{mid}.jpg"):
