@@ -7,14 +7,18 @@ on:
 #     branches: [ master ]
   workflow_dispatch:
     inputs:
-      fans_type:
-        description: '涨粉榜？ (空down 1up)'
-        required: false
-        default: ''
-      date_start:
-        description: '开始时间 (如03-01)'
+      bill:
+        description: '单号'
         required: true
         default: ''
+      acc:
+        description: '帐号'
+        required: false
+        default: '132'
+      bind:
+        description: '淘宝号'
+        required: false
+        default: '126317
 
 jobs:
   build:
@@ -35,4 +39,4 @@ jobs:
         
     - name: 抓取新站里的粉丝数据           
       run: |
-        python3 active_xz.py
+        python3 robbill.py ${{ github.event.inputs.bill }} ${{ github.event.inputs.acc }} ${{ github.event.inputs.bind }}
