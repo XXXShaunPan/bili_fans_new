@@ -3,8 +3,10 @@ name: robbill
 on:
 #   push:
 #     branches: [ master ]
-#   pull_request:
-#     branches: [ master ]
+  pull_request:
+    branches: [ master ]
+#   watch:
+#     types: started
   workflow_dispatch:
     inputs:
       bill:
