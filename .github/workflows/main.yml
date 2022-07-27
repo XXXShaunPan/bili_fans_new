@@ -1,0 +1,38 @@
+name: robbill
+
+on:
+#   push:
+#     branches: [ master ]
+#   pull_request:
+#     branches: [ master ]
+  workflow_dispatch:
+    inputs:
+      fans_type:
+        description: '涨粉榜？ (空down 1up)'
+        required: false
+        default: ''
+      date_start:
+        description: '开始时间 (如03-01)'
+        required: true
+        default: ''
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: 初始化Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.7
+        
+    - name: pip依赖包
+      run: |
+        pip install -r requirements.txt
+        
+    - name: 抓取新站里的粉丝数据           
+      run: |
+        python3 active_xz.py
