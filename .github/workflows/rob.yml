@@ -1,4 +1,4 @@
-name: robbill
+name: send_email
 
 on:
 #   push:
@@ -9,19 +9,19 @@ on:
 #     types: started
   workflow_dispatch:
     inputs:
-      bill:
-        description: '单号'
+      subject:
+        description: '标题'
         required: true
         default: ''
-      acc:
-        description: '帐号'
+      content:
+        description: '内容'
+        required: true
+        default: ''
+      user:
+        description: '收件人'
         required: false
-        default: '132'
-      bind:
-        description: '淘宝号'
-        required: false
-        default: '126317
-
+        default: '630077372@qq.com'
+  
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -30,15 +30,16 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     
-    - name: 初始化Python
-      uses: actions/setup-python@v2
+    - name: 'Send mail'
+      if: github.event_name == 'workflow_dispatch'
+      uses: dawidd6/action-send-mail@master
       with:
-        python-version: 3.7
-        
-    - name: pip依赖包
-      run: |
-        pip install -r requirements.txt
-        
-    - name: 抓取新站里的粉丝数据           
-      run: |
-        python3 robbill.py ${{ github.event.inputs.bill }} ${{ github.event.inputs.acc }} ${{ github.event.inputs.bind }}
+        server_address: smtp.qq.com
+        server_port: 465
+        username: ${{ secrets.MAIL_USERNAME }}
+        password: ${{ secrets.MAIL_PASSWORD }}
+        subject: ${{ github.event.inputs.subject }}
+        body: ${{ github.event.inputs.content }}
+        to: ${{ github.event.inputs.user }}
+        from: Shaun
+        content_type: text/plain
