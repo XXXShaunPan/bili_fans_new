@@ -1,0 +1,44 @@
+name: robbill
+
+on:
+#   push:
+#     branches: [ master ]
+  pull_request:
+    branches: [ master ]
+#   watch:
+#     types: started
+  workflow_dispatch:
+    inputs:
+      bill:
+        description: '单号'
+        required: true
+        default: ''
+      acc:
+        description: '帐号'
+        required: false
+        default: '132'
+      bind:
+        description: '淘宝号'
+        required: false
+        default: '126317
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: 初始化Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.7
+        
+    - name: pip依赖包
+      run: |
+        pip install -r requirements.txt
+        
+    - name: 抓取新站里的粉丝数据           
+      run: |
+        python3 robbill.py ${{ github.event.inputs.bill }} ${{ github.event.inputs.acc }} ${{ github.event.inputs.bind }}
