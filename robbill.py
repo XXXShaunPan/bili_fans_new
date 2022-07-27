@@ -75,9 +75,9 @@ res=requests.post(timeUrl,headers=header,json=data).json()
 nexttime=res['data']['nexttime']
 link=res['data']['pai_linkurl']
 print('next:',time.strftime("%m-%d:%H:%M:%S",time.localtime(nexttime)))
-if nexttime-time.time()>5:
-	print('沉睡',nexttime-time.time()-2)
-	time.sleep(nexttime-time.time()-2)
+if nexttime-time.time()-28800>5:
+	print('沉睡',nexttime-time.time()-28802)
+	time.sleep(nexttime-time.time()-28802)
 data['token']=rob_login.login(login_acc)
 while 1:
 	res=requests.post(apiUrl,headers=header,json=data).json()
@@ -88,13 +88,13 @@ while 1:
 	# print(time.time())
 	elif '审核' in res['msg']:
 		# print(res['msg'])
-		wx_message.sendMessage(f'{yongid}--{login_acc}--{data["bindid"]}--抢成功了',link)
+		wx_message.sendMessage_old(f'{yongid}--{login_acc}--{data["bindid"]}--抢成功了',link)
 		break
 	elif nexttime<time.time()-3 or not ids[login_acc]:
-		wx_message.sendMessage(f'{yongid}--没抢到 或 没号={len(ids[login_acc])}')
+		wx_message.sendMessage_old(f'{yongid}--没抢到 或 没号={len(ids[login_acc])}')
 		break
 	elif "请等待放单" in res["msg"]:
 		continue
 	else:
-		wx_message.sendMessage(f'{yongid}--{res["msg"]}')
+		wx_message.sendMessage_old(f'{yongid}--{res["msg"]}')
 		break
