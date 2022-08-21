@@ -40,3 +40,17 @@ jobs:
     - name: 抓取新站里的粉丝数据           
       run: |
         python3 robbill.py ${{ github.event.inputs.bill }} ${{ github.event.inputs.acc }} ${{ github.event.inputs.bind }}
+
+    - name: 'Send mail'
+      if: success()
+      uses: dawidd6/action-send-mail@master
+      with:
+        server_address: smtp.qq.com
+        server_port: 465
+        username: ${{ secrets.MAIL_USERNAME }}
+        password: ${{ secrets.MAIL_PASSWORD }}
+        subject: ${{ github.event.inputs.bill }}
+        body: "rob_bill结束，快来看看~"
+        to: 630077372@qq.com
+        from: Shaun_actions
+        content_type: text/plain
