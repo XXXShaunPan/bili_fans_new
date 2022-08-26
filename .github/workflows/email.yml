@@ -32,7 +32,7 @@ jobs:
     
     - name: 'Send mail'
       run: |
-        a='123123'
+        export a='123123'
     - name: 'Send mail22'
       run: |
         echo ${a}
