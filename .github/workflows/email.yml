@@ -31,7 +31,7 @@ jobs:
     - uses: actions/checkout@v2
     
     - name: 'Send mail'
-    - run: |
+      run: |
         a='123123'
         echo ${a}
 #       if: github.event_name == 'workflow_dispatch'
