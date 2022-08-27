@@ -5,7 +5,7 @@ from datetime import datetime
 import rob_login,wx_message
 from pytz import timezone
 
-is_force=False
+is_force=True
 if sys.argv[-1] == '1':
 	is_force=True
 	sys.argv.pop()
