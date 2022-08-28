@@ -39,7 +39,7 @@ jobs:
      
     - name: 开始睡眠
       run: |
-        python3 -c "import time;time.sleep(30)"
+        python3 -c "import time;print(time.time())"
 #        sleep ${{ github.event.inputs.sleep }}
 
 #     - name: pip依赖包
