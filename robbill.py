@@ -3,7 +3,7 @@ import requests
 import time,sys
 from datetime import datetime
 import rob_login,wx_message
-from pytz import timezone
+# from pytz import timezone
 
 is_force=True
 if sys.argv[-1] == '1':
@@ -77,9 +77,10 @@ res=requests.post(timeUrl,headers=header,json=data).json()
 nexttime=res['data']['nexttime']
 link=res['data']['pai_linkurl']
 print('next:',time.strftime("%m-%d:%H:%M:%S",time.localtime(nexttime)))
-if nexttime-int(time.mktime(datetime.now(timezone('Asia/Shanghai')).timetuple()))>5:
-# 	print('沉睡',nexttime-time.time()-28802)
-	time.sleep(nexttime-int(time.mktime(datetime.now(timezone('Asia/Shanghai')).timetuple())))
+print(time.time())
+if nexttime-time.time()>5:
+	print('沉睡',nexttime-time.time()-5)
+	time.sleep(nexttime-int(time.time()-5)
 data['token']=rob_login.login(login_acc)
 while 1:
 	res=requests.post(apiUrl,headers=header,json=data).json()
