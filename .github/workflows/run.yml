@@ -6,7 +6,7 @@ on:
 #   pull_request:
 #     branches: [ master ]
   schedule:
-    - cron: 0 9 * * *
+    - cron: 0 20 * * *
   watch:
     types: started
   workflow_dispatch:
@@ -49,16 +49,17 @@ jobs:
 #       直接判断执行条件
       if: github.event_name != 'workflow_dispatch'              
       run: |
-        python3 active_xz.py
+        python3 rob_sgin.py
+#        python3 active_xz.py
         
-        python3 down_fans.py
-        echo "============华丽的分割线==========="
-        python3 up_fans.py
+#        python3 down_fans.py
+#        echo "============华丽的分割线==========="
+#        python3 up_fans.py
       
     - name: 失败重试
       if: failure()
       run: |
-        sleep 30 && python3 active_xz.py && python3 down_fans.py && python3 up_fans.py
+ #       sleep 30 && python3 active_xz.py && python3 down_fans.py && python3 up_fans.py
      
 #     - name: 'Send mail'
 #       if: success() && github.event_name != 'workflow_dispatch'
