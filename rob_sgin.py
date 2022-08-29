@@ -26,5 +26,5 @@ acc_list=['131','136','1312','132']
 whlie acc_list:
     acc=acc_list.pop()
     data['token']=rob_login.login(acc)
-    res=requests.post(apiUrl,headers=header,json=data).json()
+    res=requests.post(api_url,headers=header,json=data).json()
     
