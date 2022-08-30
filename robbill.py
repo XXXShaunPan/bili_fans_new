@@ -80,7 +80,7 @@ print('next:',time.strftime("%m-%d:%H:%M:%S",time.localtime(nexttime)))
 print(time.time())
 if nexttime-time.time()>100:
     print('沉睡',nexttime-time.time()-100)
-    time.sleep(nexttime-int(time.time()-100))
+#    time.sleep(nexttime-int(time.time()-100))
 data['token']=rob_login.login(login_acc)
 while 1:
     res=requests.post(apiUrl,headers=header,json=data).json()
